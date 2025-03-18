@@ -1,3 +1,7 @@
+const { log } = require("console");
+const fs = require('fs')
+const { resolve } = require('path')
+const path = './books.json'
 class Book {
     id;
     name;
@@ -19,21 +23,36 @@ let arr = [
     new Book('What is right is right', 'emotion', 'yes'),
     new Book('Blue Blood', 'tension', 'yes')
 ]
-function print(...arr) {
-    for (let i = 0; i < arr.length; i++) {
-        console.log(arr[i].toString());
+function print() {
+    const books = readBooks();
+    for(const b in books)
+        console.log(JSON.stringify(b,null,2));       
+}
+function borrow(c) {
+    const books = readBooks()
+    for (const b of books) {
+        if (b.code == c)
+            return b
+    }
+    throw new Error(`book with code ${c} not found! `)
+}
+function initBooks(){
+    try{
+        const data = JSON.stringify(arr,null,2)
+        fs.writeFileSync(path,data,'utf8')
+        console.log("books data success!")
+    } catch (err){
+        console.log("books data error!")
     }
 }
-function borrow(code) {
-    try {
-        const result = arr.filter(x => x.id === code);
-        if (result.length === 0) {
-            throw new Error("Book not found");
-        }
-        return result;
-    } catch (error) {
-        console.log(error.message);
+function readBooks(){
+    try{
+        const data = fs.readFileSync(path,'utf8')
+        return JSON.parse(data)
+    } catch(err){
+        console.log("error reading books file:",err)
+        return []
     }
 }
-module.exports={Book,borrowBook:borrow,printBook:print}
+module.exports = { Book, borrowBook: borrow, printBook: print, initBooks,readBooks}
 
