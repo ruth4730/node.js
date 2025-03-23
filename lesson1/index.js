@@ -1,15 +1,29 @@
+const { borrowBook, initBooks } = require('./books');
+const { borrowUser, initUsers } = require('./users');
+const { addLoan } = require('./loans');
 
-const {borrowBook,printBook,initBooks}=require('./books')
-const {borrowUser,printUser, initUsers}=require('./users')
-//initUsers()
-initBooks()
-/*const book=borrowBook(process.argv[2]);
-const user=borrowUser(process.argv[3]);
-if(book!=null && user!=null && book.type!==user.type && book.borrow==='no' && user.borrow==='no'){
-    user.borrow='yes'
-    book.borrow='yes'
-    console.log('the book was borrowed with success');   
+// עטוף את הקוד הראשי בפונקציה אסינכרונית
+async function main() {
+    initBooks();
+    initUsers();
+
+    const bookId = process.argv[2];
+    const userId = process.argv[3];
+
+    try {
+        const book = borrowBook(bookId);
+        const user = await borrowUser(userId);
+        if (book && user && book.borrowed === 'no' && user.borrowed === 'no') {
+            user.borrowed = 'yes';
+            book.borrowed = 'yes';
+            addLoan(userId, bookId);
+            console.log('The book was borrowed successfully!');
+        } else {
+            console.log('You cannot borrow this book.');
+        }
+    } catch (error) {
+        console.error("Error:", error.message);
+    }
 }
-else{
-    console.log('you cant borrow book');   
-}*/
+
+main();

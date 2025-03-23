@@ -31,7 +31,7 @@ function print() {
 function borrow(c) {
     const books = readBooks()
     for (const b of books) {
-        if (b.code == c)
+        if (b.id == c)
             return b
     }
     throw new Error(`book with code ${c} not found! `)

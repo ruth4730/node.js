@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "colors": "^1.4.0"
+  },
+  "scripts": {
+    "ex4.2": "node index.js" 
+  }
+}
