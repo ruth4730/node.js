@@ -1,0 +1,25 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "node --watch ex2.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruth4730/node.js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ruth4730/node.js/issues"
+  },
+  "homepage": "https://github.com/ruth4730/node.js#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
