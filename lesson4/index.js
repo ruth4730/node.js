@@ -1,0 +1,14 @@
+const course = require("./course.js");
+course.createCourse(undefined, 100, ["JS", "HTML"], "Ruth", new Date(), true);
+course.createCourse("Python", 200, ["Python", "AI"], "David", new Date(), false);
+course.createCourse("Java", 0, undefined, undefined, new Date(), true);
+course.createCourse("C++", 120, ["C++", "OOP"], "Alice", new Date(), false);
+course.createCourse("C#", 130, ["C#", "ASP.NET"], "Bob", new Date(), true);
+course.getCourseCount();
+course.getCourses();
+course.getCourseById("64f4e8b2c9d3f1a0b8c8e4a5");
+course.func6();
+course.func7();
+course.func8();
+course.updateCourseById("64f4e8b2c9d3f1a0b8c8e4a5", { price: 250, arrTopic: ["Java", "Spring"] });
+course.deleteCourse();
