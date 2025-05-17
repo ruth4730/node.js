@@ -1,5 +1,6 @@
-import express from 'express';
-const router = express.Router();
+import { Router } from "express";
+import { addBook, deleteBook, getAllBooks, getBookById, updateBook } from "../controllers/book.controller.js";
+const router = Router();
 router.get('/', getAllBooks)
 router.get('/:id', getBookById)
 router.post('/', addBook)

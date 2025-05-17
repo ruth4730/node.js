@@ -4,10 +4,15 @@ import userRoute from './routes/user.route.js';
 import { addDate, printDate, blockDate } from './middlewares/AddDate.middleware.js';
 import cors from 'cors';
 import morgan from 'morgan';
-import { not } from 'joi';
+import { config } from 'dotenv';
+import { connect } from 'mongoose';
+import { connectDB } from './config/db.js';
+import {notFound, errorHandling} from './middlewares/errorHandling.middleware.js'
+config();
+connectDB();
 const app = express();
 app.use(cors());
-if(process.env.NODE_ENV !== 'development'){
+if (process.env.NODE_ENV !== 'development') {
     app.use(morgan('dev'));
 }
 app.use(morgan('dev'));
@@ -25,5 +30,5 @@ app.use('/Users', userRoute);
 app.use(notFound);
 app.use(errorHandling);
 app.listen(5000, () => {
-    console.log('Server is running on port 3000');
+    console.log(`Example app listening on http://localhost:5000`);
 })

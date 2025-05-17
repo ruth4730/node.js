@@ -1,5 +1,5 @@
-import Book from '../models/books.js';
-export const getAllBooks = (req, res, next) => {
+import Book from '../models/books.model.js';
+export const getAllBooks = async (req, res, next) => {
     try {
         const books = await Book.find();
         res.json(books);
